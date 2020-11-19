@@ -1,8 +1,53 @@
+const inquirer = require('inquirer');
+const fs = require('fs');
+const generatePage = require('./src/page-template');
+const Employee = require('./lib/Employee');
+
+const questions = [
+    {
+        type: 'text',
+        name: 'name',
+        message: 'What is your name?'
+    },
+    {
+        type: 'text', 
+        name: 'id',
+        message: 'What is the employee ID?',
+    }, 
+    {
+        type: 'text',
+        name: 'email', 
+        message: "What is the employee's email address?"
+    }
+]
+
+function init() {
+
+
+}
+
+module.exports = init;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // pseudo coding: 
 
-// install inquirer and jest
+// install inquirer and jest (done)
 
-// create HTML page with styling and add template to src/page-template
+// create HTML page with styling and add template to src/page-template (done)
 
 // create the Employee parents class with the following properties:
 // name, id, email, getName(), getId(), getEmail(), getRole() <- returns 'Employee'
