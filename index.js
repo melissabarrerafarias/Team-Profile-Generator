@@ -3,30 +3,118 @@ const fs = require('fs');
 const generatePage = require('./src/page-template');
 const Employee = require('./lib/Employee');
 
-const questions = [
-    {
-        type: 'text',
-        name: 'name',
-        message: 'What is your name?'
-    },
-    {
-        type: 'text', 
-        name: 'id',
-        message: 'What is the employee ID?',
-    }, 
-    {
-        type: 'text',
-        name: 'email', 
-        message: "What is the employee's email address?"
-    }
-]
-
-function init() {
-
-
+const promptQuestions = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is team Manager's name?"
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter the Manager's employee ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter the Manager's email address:"
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "Enter the Manager's office number:",
+        }
+    ])
 }
 
-module.exports = init;
+const addMember = memberData => {
+    
+    // memberData = [];
+
+    console.log(`
+    =========================
+    Add Team Member or Finish
+    =========================
+    `);
+
+    return inquirer.prompt([
+        {
+            type: "list",
+            name: "members",
+            message: "Please select one of the following options:",
+            choices: ['Add Engineer', 'Add Intern', 'Finish Building My Team'],
+        }
+    ])
+        .then((answers) => {
+
+            if (answers.members === "Add Engineer") {
+                return addEngineer();
+            }
+
+            else if (answers.members === "Add Intern") {
+                return addIntern();
+            };
+        });
+}
+
+const addEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter the engineer's name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter the engineer's employee ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter the engineer's email address:",
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Enter the engineers github username",
+        },
+    ]) 
+    .then(answers => console.log(answers));
+}
+
+const addIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter the intern's name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter the intern's employee ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter the intern's email address:",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Enter the intern's school:",
+        },
+    ]) 
+    .then(answers => console.log(answers));
+}
+
+promptQuestions()
+    .then(answers => console.log(answers))
+    .then(addMember)
+    .then(addMemberAnswers => console.log(addMemberAnswers));
+
 
 
 
