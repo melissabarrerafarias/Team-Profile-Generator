@@ -28,15 +28,16 @@ const promptQuestions = () => {
     ])
 }
 
+// user selects wether or not they want to add a team member or finish team
 const addMember = memberData => {
     
-    // memberData = [];
+    // teamMembers = [];
 
-    console.log(`
-    =========================
-    Add Team Member or Finish
-    =========================
-    `);
+console.log(`
+=========================
+Add Team Member or Finish
+=========================
+`);
 
     return inquirer.prompt([
         {
@@ -54,10 +55,16 @@ const addMember = memberData => {
 
             else if (answers.members === "Add Intern") {
                 return addIntern();
-            };
+            }
+
+            else if (answers.members === "Finish Building My Team") {
+                // code for creating rendering the HTML
+                console.log('Your team has been created!');
+            }
         });
 }
 
+// function to add engineer to team
 const addEngineer = () => {
     return inquirer.prompt([
         {
@@ -81,9 +88,11 @@ const addEngineer = () => {
             message: "Enter the engineers github username",
         },
     ]) 
-    .then(answers => console.log(answers));
+    .then(answers => console.log(answers))
+    .then(addMember);
 }
 
+// function to add intern to team 
 const addIntern = () => {
     return inquirer.prompt([
         {
@@ -107,25 +116,14 @@ const addIntern = () => {
             message: "Enter the intern's school:",
         },
     ]) 
-    .then(answers => console.log(answers));
+    .then(answers => console.log(answers))
+    .then(addMember);
 }
 
 promptQuestions()
     .then(answers => console.log(answers))
     .then(addMember)
     .then(addMemberAnswers => console.log(addMemberAnswers));
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -153,7 +151,7 @@ promptQuestions()
 // school, getSchool(), and getRole() <- overrides 'Employee' and returns 'Intern'
 
 
-// questions for prompts: 
+// questions for prompts: (done)
 
 // The team managers name, employee ID, email address, and office number
 
