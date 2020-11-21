@@ -7,12 +7,21 @@ const Intern = require("./lib/Intern");
 
 // team members
 let teamMembers = [];
+let team = ``;
 
 const teamHTML = function() {
     for (let i = 0; i < teamMembers.length; i++) {
-        output = output + generateNewMember(teamArray[i]);
+       team = team + generateNewMember(teamMembers[i]);
     }
-}
+
+    let htmlGenerated = generatePage(team)
+
+    // write file with fsWriteFile 
+    fs.writeFile('./dist/index.html', htmlGenerated, err => {
+        if (err) throw err;
+        console.log("Your team was built!");
+    });
+};
 
 const promptManager = () => {
     return inquirer.prompt([
@@ -76,7 +85,6 @@ const promptManager = () => {
     .then((response) => {
         const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
         teamMembers.push(manager);
-        console.log(teamMembers);
     })
 }
 
@@ -109,7 +117,7 @@ Add Team Member or Finish
 
             else if (answers.members === "Finish Building My Team") {
                 // code for creating rendering the HTML
-                console.log('Your team has been created!');
+                console.log("Your team was built!");
             }
         });
 }
@@ -177,7 +185,6 @@ const addEngineer = () => {
     .then((response) => {
         const engineer = new Engineer(response.name, response.id, response.email, response.github);
         teamMembers.push(engineer);
-        console.log(teamMembers);
     })
     .then(addMember);
 }
@@ -245,14 +252,13 @@ const addIntern = () => {
     .then((response) => {
         const intern = new Intern(response.name, response.id, response.email, response.school);
         teamMembers.push(intern);
-        console.log(teamMembers);
     })
     .then(addMember);
 }
 
 promptManager()
-    .then(addMember);
-
+    .then(addMember)
+    .then(teamHTML);
 
 // pseudo coding: 
 

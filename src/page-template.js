@@ -1,6 +1,6 @@
 const generateNewMember = function(member) {
+    console.log(member);
     // if else statements to create card for correct team member
-
     if (member.role === "Manager") {
         roleAddOn = `Office Number: ${member.officeNumber}`
     }
@@ -31,7 +31,7 @@ const generateNewMember = function(member) {
             </div>
             `
 }
-const generatePage = function() {
+const generatePage = function(team) {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ const generatePage = function() {
 <body>
     <div class="container">
         <div class="row">
-            ${generateNewMember()}
+            ${team}
         </div>
     </div>
 
