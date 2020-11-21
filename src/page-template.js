@@ -5,7 +5,7 @@ const generateNewMember = function(member) {
         roleAddOn = `Office Number: ${member.officeNumber}`
     }
     else if (member.role === "Engineer") {
-        roleAddOn = `Github: ${member.github}`
+        roleAddOn = `Github: <a href = https://github.com/${member.github}>${member.github}</a>`
     }
     else if (member.role === "Intern") {
         roleAddOn = `School: ${member.school}`
@@ -22,7 +22,9 @@ const generateNewMember = function(member) {
                         <div class="card">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">ID: ${member.id}</li>
-                                <li class="list-group-item">Email: ${member.email}</li>
+                                <li class="list-group-item">Email:
+                                <a href = "mailto: ${member.email}">${member.email}</a>
+                                </li>
                                 <li class="list-group-item">${roleAddOn}</li>
                             </ul>
                         </div>
