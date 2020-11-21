@@ -1,11 +1,14 @@
-# Team_Profile-Generator
+# Team-Profile-Generator
 
 ## Description 
 User Story: 
 
 AS A manager
+
 I WANT to generate a webpage that displays my team's basic info
+
 SO THAT I have quick access to their emails and GitHub profiles
+
 
 This is exactly what this application does! You are able to build a team with a manager, an engineer, and an intern... as many engineers and interns as your heart desires! 
 
