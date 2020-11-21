@@ -247,8 +247,6 @@ const addIntern = () => {
 promptManager()
     .then(addMember);
 
-module.exports = { promptManager, addEngineer, addIntern };
-
 
 // pseudo coding: 
 
