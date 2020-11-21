@@ -9,3 +9,17 @@ test("creates intern", () => {
     expect(employee.school).toEqual(expect.any(String));
     expect(employee.role).toEqual(expect.any(String));
 })
+
+
+test('gets intern school', () => {
+    const employee = new Intern("George", 16, 'georgie@gmail.com', 'Santee School of Tortillas');
+
+    expect(employee.getSchool()).toEqual(expect.stringContaining("Tortillas"));
+})
+
+
+test('gets role of employee', () => {
+    const employee = new Intern("George", 16, 'georgie@gmail.com', 'Santee School of Tortillas');
+
+    expect(employee.getRole()).toEqual(expect.stringContaining("Intern"));
+})
