@@ -1,11 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generatePage = require('./src/page-template');
-const Employee = require('./lib/Employee');
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+// team members
 let teamMembers = [];
 
 const promptManager = () => {
