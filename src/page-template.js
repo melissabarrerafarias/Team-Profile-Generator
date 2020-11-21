@@ -33,6 +33,7 @@ const generateNewMember = function(member) {
             </div>
             `
 }
+
 const generatePage = function(team) {
     return `
     <!DOCTYPE html>
