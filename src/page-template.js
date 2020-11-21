@@ -1,4 +1,37 @@
-const generatePage = () => {
+const generateNewMember = function(member) {
+    // if else statements to create card for correct team member
+
+    if (member.role === "Manager") {
+        roleAddOn = `Office Number: ${member.officeNumber}`
+    }
+    else if (member.role === "Engineer") {
+        roleAddOn = `Github: ${member.github}`
+    }
+    else if (member.role === "Intern") {
+        roleAddOn = `School: ${member.school}`
+    }
+
+    return `
+    <div class="col-4 mb-5">
+                <div class="card shadow-lg" style="width: 18rem;">
+                    <div class="card-header text-white bg-primary">
+                        <h3 class="card-title">${member.name}</h3>
+                        <h5>${member.role}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">ID: ${member.id}</li>
+                                <li class="list-group-item">Email: ${member.email}</li>
+                                <li class="list-group-item">${roleAddOn}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+}
+const generatePage = function() {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -19,61 +52,7 @@ const generatePage = () => {
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-4 mb-5">
-                <div class="card shadow-lg" style="width: 18rem;">
-                    <div class="card-header text-white bg-primary">
-                        <h3 class="card-title">Jared</h3>
-                        <h5>Manager</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">ID:</li>
-                                <li class="list-group-item">Email:</li>
-                                <li class="list-group-item">Office Number:</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="col-4 mb-5">
-                <div class="card shadow-lg" style="width: 18rem;">
-                    <div class="card-header text-white bg-primary">
-                        <h3 class="card-title">Alec</h3>
-                        <h5>Engineer</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">ID</li>
-                                <li class="list-group-item">Email</li>
-                                <li class="list-group-item">Github:</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-4 mb-5">
-                <div class="card shadow-lg" style="width: 18rem;">
-                    <div class="card-header text-white bg-primary">
-                        <h3 class="card-title">Tammer</h3>
-                        <h5>Intern</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">ID</li>
-                                <li class="list-group-item">Email</li>
-                                <li class="list-group-item">School:</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            ${generateNewMember()}
         </div>
     </div>
 
@@ -83,4 +62,4 @@ const generatePage = () => {
     `;
 };
 
-module.exports = generatePage;
+module.exports = { generatePage, generateNewMember }
