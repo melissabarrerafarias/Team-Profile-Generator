@@ -174,21 +174,57 @@ const addIntern = () => {
             type: 'input',
             name: 'name',
             message: "Enter the intern's name:",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter the intern's name");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: "Enter the intern's employee ID:",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter the intern's employee ID");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: "Enter the intern's email address:",
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter the intern's email");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'school',
             message: "Enter the intern's school:",
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter the intern's school");
+                    return false;
+                }
+            }
         },
     ]) 
     .then(answers => console.log(answers))
