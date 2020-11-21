@@ -6,7 +6,9 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-const promptQuestions = () => {
+let teamMembers = [];
+
+const promptManager = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -65,12 +67,15 @@ const promptQuestions = () => {
             }
         }
     ])
+    .then((response) => {
+        const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+        teamMembers.push(manager);
+        console.log(teamMembers);
+    })
 }
 
 // user selects wether or not they want to add a team member or finish team
-const addMember = memberData => {
-    
-    // teamMembers = [];
+const addMember = () => {
 
 console.log(`
 =========================
@@ -163,7 +168,11 @@ const addEngineer = () => {
             }
         },
     ]) 
-    .then(answers => console.log(answers))
+    .then((response) => {
+        const engineer = new Engineer(response.name, response.id, response.email, response.github);
+        teamMembers.push(engineer);
+        console.log(teamMembers);
+    })
     .then(addMember);
 }
 
@@ -227,16 +236,18 @@ const addIntern = () => {
             }
         },
     ]) 
-    .then(answers => console.log(answers))
+    .then((response) => {
+        const intern = new Intern(response.name, response.id, response.email, response.school);
+        teamMembers.push(intern);
+        console.log(teamMembers);
+    })
     .then(addMember);
 }
 
-promptQuestions()
-    .then(answers => console.log(answers))
-    .then(addMember)
-    .then(addMemberAnswers => console.log(addMemberAnswers));
+promptManager()
+    .then(addMember);
 
-module.exports = { promptQuestions, addEngineer, addIntern };
+module.exports = { promptManager, addEngineer, addIntern };
 
 
 // pseudo coding: 
